@@ -1,3 +1,17 @@
+#### 4.1.9: Maintenance Release
+
+ - Update "use-tls" translations to indicate that a custom cert is used (#5685) @tobias47n9e
+ - Indicate that "use-tls" label is using a custom config (#5665) @tobias47n9e
+ - Bump dependencies for 4.1.9 release (#5663) @knolleary
+ - Bundle npm to enable cross-platform module management (#5662) @knolleary
+ - Replace uuid library with native function crypto.randomUUID (#5660) @hlovdal
+ - Ensure tcp-request doesn't reuse uncloned msg objects (#5612) @hardillb
+ - Ensure custom subflow colors override theme overrides (#5599) @knolleary
+ - Handle invalid theme regex (#5598) @knolleary
+ - Allow a nodes defaults to be overridden by settings.js file (#5591) @dceejay
+ - Fix reinitializing server with custom node (#5596) @tobias47n9e
+ - Update config sidebar id handling (#5597) @knolleary
+ 
 #### 4.1.8: Maintenance Release
 
  - Add badges to func node tabs with code in (#5585) @knolleary
