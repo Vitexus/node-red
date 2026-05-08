@@ -1,5 +1,6 @@
 #### 4.1.10: Maintenance Release
 
+ - Ensure project files are inside project root path (#5724) @knolleary
  - Fix module name validation for uninstall and tgz install (#5722) @knolleary
 
 #### 4.1.9: Maintenance Release
