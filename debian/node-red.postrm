@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    purge)
+        rm -rf /var/lib/node-red /etc/node-red
+        deluser --system nodered 2>/dev/null || true
+        delgroup --system nodered 2>/dev/null || true
+    ;;
+esac
+
+#DEBHELPER#

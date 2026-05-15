@@ -1,0 +1,40 @@
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+
+%:
+	dh $@ --with systemd
+
+override_dh_auto_build:
+	npm install --production --ignore-scripts
+
+override_dh_auto_install:
+	# Install node-red core from the monorepo packages directory
+	install -d debian/node-red/usr/share/node-red
+	cp -a packages/node_modules/node-red/. debian/node-red/usr/share/node-red/
+	# Install @node-red/* workspace packages
+	install -d debian/node-red/usr/share/node-red/@node-red
+	for pkg in editor-api editor-client nodes registry runtime util; do \
+		cp -a packages/node_modules/@node-red/$$pkg debian/node-red/usr/share/node-red/@node-red/; \
+	done
+	# Bundle transitive npm dependencies
+	install -d debian/node-red/usr/share/node-red/node_modules
+	[ -d node_modules ] && cp -a node_modules/. debian/node-red/usr/share/node-red/node_modules/ || true
+	# Create node-red launcher script
+	install -d debian/node-red/usr/bin
+	printf '#!/bin/sh\nexec /usr/bin/node /usr/share/node-red/red.js "$$@"\n' \
+		> debian/node-red/usr/bin/node-red
+	chmod 755 debian/node-red/usr/bin/node-red
+	# Runtime data directory and config directory
+	install -d debian/node-red/var/lib/node-red
+	install -d debian/node-red/etc/node-red
+	# Systemd service
+	install -d debian/node-red/lib/systemd/system
+	install -m 644 debian/node-red.service debian/node-red/lib/systemd/system/
+
+override_dh_shlibdeps:
+
+override_dh_strip:
+
+override_dh_fixperms:
+	dh_fixperms
+	chmod 755 debian/node-red/usr/bin/node-red

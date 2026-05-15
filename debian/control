@@ -1,0 +1,18 @@
+Source: node-red
+Section: javascript
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends: debhelper-compat (= 13), nodejs (>= 20), npm
+Standards-Version: 4.6.2
+Homepage: https://nodered.org
+Vcs-Git: https://github.com/Vitexus/node-red.git
+Vcs-Browser: https://github.com/Vitexus/node-red
+
+Package: node-red
+Architecture: all
+Depends: ${misc:Depends}, nodejs (>= 20), adduser
+Description: Low-code programming for event-driven applications
+ Node-RED is a flow-based development tool for visual programming.
+ It provides a browser-based editor that makes it easy to wire together
+ hardware devices, APIs and online services using the wide range of nodes
+ in the palette.
