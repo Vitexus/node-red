@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="console-application">
+  <id>io.github.vitexus.node_red</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  <name>Node-RED</name>
+  <summary>Low-code programming for event-driven applications</summary>
+  <description>
+    <p>
+      Node-RED is a flow-based development tool for visual programming.
+      It provides a browser-based editor that makes it easy to wire together
+      hardware devices, APIs and online services using the wide range of nodes
+      in the palette that can be deployed to its runtime in a single click.
+    </p>
+  </description>
+  <categories>
+    <category>Development</category>
+    <category>Utility</category>
+  </categories>
+  <url type="homepage">https://nodered.org</url>
+  <url type="bugtracker">https://github.com/node-red/node-red/issues</url>
+  <url type="vcs-browser">https://github.com/Vitexus/node-red</url>
+  <developer id="io.github.vitexus">
+    <name>VitexSoftware</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="4.1.10" date="2024-01-01"/>
+  </releases>
+</component>
