@@ -28,8 +28,8 @@ override_dh_auto_install:
 	install -d debian/node-red/var/lib/node-red
 	install -d debian/node-red/etc/node-red
 	# Systemd service
-	install -d debian/node-red/lib/systemd/system
-	install -m 644 debian/node-red.service debian/node-red/lib/systemd/system/
+	install -d debian/node-red/usr/lib/systemd/system
+	install -m 644 debian/node-red.service debian/node-red/usr/lib/systemd/system/
 	# AppStream metadata
 	install -d debian/node-red/usr/share/metainfo
 	install -m 644 debian/io.github.vitexus.node_red.metainfo.xml \
