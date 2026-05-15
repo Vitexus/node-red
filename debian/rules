@@ -2,7 +2,7 @@
 export DH_VERBOSE = 1
 
 %:
-	dh $@ --with systemd
+	dh $@
 
 override_dh_auto_build:
 	npm install --production --ignore-scripts
