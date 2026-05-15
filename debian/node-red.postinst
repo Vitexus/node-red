@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    configure)
+        adduser --system --no-create-home --home /var/lib/node-red \
+            --shell /usr/sbin/nologin --group nodered 2>/dev/null || true
+        mkdir -p /var/lib/node-red
+        chown nodered:nodered /var/lib/node-red
+    ;;
+esac
+
+#DEBHELPER#

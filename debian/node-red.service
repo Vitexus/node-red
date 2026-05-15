@@ -1,0 +1,18 @@
+[Unit]
+Description=Node-RED
+Documentation=https://nodered.org/docs/
+After=syslog.target network.target
+
+[Service]
+ExecStart=/usr/bin/node-red
+Restart=on-failure
+KillSignal=SIGINT
+User=nodered
+Group=nodered
+StandardOutput=journal
+StandardError=journal
+WorkingDirectory=/var/lib/node-red
+Environment=NODE_PATH=/usr/share/nodejs:/usr/lib/nodejs
+
+[Install]
+WantedBy=multi-user.target
