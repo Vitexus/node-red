@@ -6,15 +6,22 @@ export DH_VERBOSE = 1
 
 override_dh_auto_build:
 	npm install --production --ignore-scripts
+	# Fetch pre-built editor-client assets (public/) from the npm registry,
+	# because --ignore-scripts skips the grunt build that would generate them.
+	npm pack @node-red/editor-client@$$(node -e "process.stdout.write(require('./packages/node_modules/@node-red/editor-client/package.json').version)")
+	tar xzf node-red-editor-client-*.tgz
+	mv package/public packages/node_modules/@node-red/editor-client/public
+	rm -rf package node-red-editor-client-*.tgz
 
 override_dh_auto_install:
 	# Install node-red core from the monorepo packages directory
 	install -d debian/node-red/usr/share/node-red
 	cp -a packages/node_modules/node-red/. debian/node-red/usr/share/node-red/
-	# Install @node-red/* workspace packages
-	install -d debian/node-red/usr/share/node-red/@node-red
+	# Install @node-red/* workspace packages directly into node_modules/@node-red/
+	# so Node.js require('@node-red/…') resolves them without symlinks
+	install -d debian/node-red/usr/share/node-red/node_modules/@node-red
 	for pkg in editor-api editor-client nodes registry runtime util; do \
-		cp -a packages/node_modules/@node-red/$$pkg debian/node-red/usr/share/node-red/@node-red/; \
+		cp -a packages/node_modules/@node-red/$$pkg debian/node-red/usr/share/node-red/node_modules/@node-red/; \
 	done
 	# Bundle transitive npm dependencies
 	install -d debian/node-red/usr/share/node-red/node_modules
